@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – Joanna Wiekiera</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <canvas id="aurora-canvas"></canvas>
+
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a class="navbar__brand" href="#home">Joanna Wiekiera</a>
+            <nav class="navbar__nav" id="navbar-nav">
+                <a href="#home">Home</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="navbar__toggle" id="navbar-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="page">
+
+        <section class="hero" id="home">
+            <div class="hero__card">
+                <div class="hero__main">
+                    <div class="hero__info">
+                        <h1 class="hero__name">Joanna Wiekiera</h1>
+                        <p class="hero__title">Machine Learning Engineer</p>
+                        <p class="hero__bio">Machine Learning Engineer with a focus on <strong>Continual Learning</strong> and <strong>Computer Vision</strong>,
+                            currently working on the <strong>super-resolution</strong> of <strong>satellite imagery</strong>.
+                            For the past three years, I have also been <strong>leading a Data Science Scientific Association</strong>, sharing my passion for AI with others. Outside the world of code,
+                            I am a beginner boulderer enjoying the learning process and an astronomy enthusiast.</p>
+                        <div class="hero__buttons">
+                            <a class="stat-btn" href="#experience">
+                                <span class="stat-btn__num">1.5+</span>
+                                <span class="stat-btn__label">years of experience</span>
+                            </a>
+                            <a class="stat-btn" href="#projects">
+                                <span class="stat-btn__num">4+</span>
+                                <span class="stat-btn__label">completed projects</span>
+                            </a>
+                            <a class="stat-btn" href="#achievements">
+                                <span class="stat-btn__num">5+</span>
+                                <span class="stat-btn__label">competitions won</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero__right">
+                        <div class="hero__avatar">
+                            <span class="hero__avatar-placeholder" aria-hidden="true">JW</span>
+                            <img src="images/photo.jpg" alt="Joanna Wiekiera">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <div class="section__inner">
+                <h2 class="section__title">Experience</h2>
+                <div class="timeline">
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--work-active"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Jul 2025 – present</span>
+                                <span class="timeline__badge timeline__badge--work">Work</span>
+                                <span class="timeline__badge timeline__badge--active">Current</span>
+                            </div>
+                            <h3 class="timeline__degree">Machine Learning Specialist</h3>
+                            <p class="timeline__uni">KP Labs</p>
+                            <p class="timeline__field">R&amp;D on deep learning for Earth Observation and super-resolution.</p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">PyTorch</span>
+                                <span class="tech-chip">Hyperspectral Data</span>
+                                <span class="tech-chip">Super-Resolution</span>
+                                <span class="tech-chip">Anomaly Detection</span>
+                                <span class="tech-chip">Continual Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--work"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Oct 2024 – Jun 2025</span>
+                                <span class="timeline__badge timeline__badge--work">Work</span>
+                                <span class="timeline__badge timeline__badge--done">Completed</span>
+                            </div>
+                            <h3 class="timeline__degree">Machine Learning Engineer Intern</h3>
+                            <p class="timeline__uni">Rockwell Automation</p>
+                            <p class="timeline__field">Developed deep learning models for time-series anomaly detection in industrial sensor data, tackling concept drift and noise. Investigated and optimised end-to-end pipelines for high-frequency industrial signals.</p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">PyTorch</span>
+                                <span class="tech-chip">Time-Series</span>
+                                <span class="tech-chip">Anomaly Detection</span>
+                                <span class="tech-chip">Concept Drift</span>
+                                <span class="tech-chip">Industrial AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--work"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Jul 2024</span>
+                                <span class="timeline__badge timeline__badge--work">Work</span>
+                                <span class="timeline__badge timeline__badge--done">Completed</span>
+                            </div>
+                            <h3 class="timeline__degree">Machine Learning Engineer Intern</h3>
+                            <p class="timeline__uni">KP Labs</p>
+                            <p class="timeline__field">Implemented neural network models for satellite data analysis. Investigated deep learning methods for anomaly detection in satellite imagery.</p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">PyTorch</span>
+                                <span class="tech-chip">Neural Networks</span>
+                                <span class="tech-chip">Anomaly Detection</span>
+                                <span class="tech-chip">Satellite Imagery</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--academic"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Oct 2023 – present</span>
+                                <span class="timeline__badge timeline__badge--academic">Academic</span>
+                                <span class="timeline__badge timeline__badge--active">Current</span>
+                            </div>
+                            <h3 class="timeline__degree">President</h3>
+                            <p class="timeline__uni">Data Science Scientific Association</p>
+                            <p class="timeline__field">Leading a 100-member group focused on AI in satellite imagery and medical data. Organised workshops with Intel and Nokia; led interdisciplinary research projects and competitions.</p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Leadership</span>
+                                <span class="tech-chip">Machine Learning</span>
+                                <span class="tech-chip">Workshop Organisation</span>
+                                <span class="tech-chip">Research</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <div class="section__inner">
+                <h2 class="section__title">Education</h2>
+                <div class="timeline">
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--active"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Mar 2025 – Jun 2026</span>
+                                <span class="timeline__badge timeline__badge--academic">Master's</span>
+                                <span class="timeline__badge timeline__badge--active">Current</span>
+                            </div>
+                            <h3 class="timeline__degree">MSc in Data Science</h3>
+                            <p class="timeline__uni">Silesian University of Technology · Gliwice</p>
+                            <p class="timeline__field">Thesis: <em>Continual learning for real-world data</em></p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Deep Learning</span>
+                                <span class="tech-chip">Bayesian Analysis</span>
+                                <span class="tech-chip">Statistical Learning</span>
+                                <span class="tech-chip">Optimization</span>
+                                <span class="tech-chip">Evolutionary Algorithms</span>
+                                <span class="tech-chip">Markov Models</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--done"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Nov 2025 · 2 weeks</span>
+                                <span class="timeline__badge timeline__badge--academic">Short Course</span>
+                                <span class="timeline__badge timeline__badge--done">Completed</span>
+                            </div>
+                            <h3 class="timeline__degree">CELEM: Biological Effects of Ionising Radiation</h3>
+                            <p class="timeline__uni">Stockholm University · Sweden</p>
+                            <p class="timeline__field">PIANOFORTE/MIRAMARE intensive course: lectures and hands-on exercises in radiation biology.</p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Radiation Biology</span>
+                                <span class="tech-chip">Fluorescence Microscopy</span>
+                                <span class="tech-chip">FISH</span>
+                                <span class="tech-chip">Dosimetry</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot timeline__dot--done"></div>
+                        <div class="timeline__card">
+                            <div class="timeline__meta">
+                                <span class="timeline__years">Oct 2021 – Feb 2025</span>
+                                <span class="timeline__badge timeline__badge--academic">Bachelor's</span>
+                                <span class="timeline__badge timeline__badge--done">Completed</span>
+                            </div>
+                            <h3 class="timeline__degree">BSc in Computer Science</h3>
+                            <p class="timeline__uni">Silesian University of Technology · Gliwice</p>
+                            <p class="timeline__field">Specialisation: Databases &amp; Systems Engineering · Thesis: <em>Continual Learning in Satellite Data Analysis</em></p>
+                            <div class="timeline__chips">
+                                <span class="tech-chip">Machine Learning</span>
+                                <span class="tech-chip">Biologically Inspired AI</span>
+                                <span class="tech-chip">Data Analysis</span>
+                                <span class="tech-chip">Numerical Methods</span>
+                                <span class="tech-chip">Discrete Mathematics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="section__inner">
+                <h2 class="section__title">Skills</h2>
+                <div class="skills__grid">
+
+                    <div class="skill-group">
+                        <h3 class="skill-group__title">Languages</h3>
+                        <div class="skill-group__chips">
+                            <span class="skill-chip">Python</span>
+                            <span class="skill-chip">C++</span>
+                            <span class="skill-chip">SQL (MySQL)</span>
+                            <span class="skill-chip">R</span>
+                            <span class="skill-chip">Assembly</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3 class="skill-group__title">Machine Learning &amp; Data</h3>
+                        <div class="skill-group__chips">
+                            <span class="skill-chip">PyTorch</span>
+                            <span class="skill-chip">TensorFlow</span>
+                            <span class="skill-chip">Keras</span>
+                            <span class="skill-chip">Scikit-Learn</span>
+                            <span class="skill-chip">Pandas</span>
+                            <span class="skill-chip">NumPy</span>
+                            <span class="skill-chip">Matplotlib</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3 class="skill-group__title">Tools &amp; Infrastructure</h3>
+                        <div class="skill-group__chips">
+                            <span class="skill-chip">Linux</span>
+                            <span class="skill-chip">Git</span>
+                            <span class="skill-chip">GitHub</span>
+                            <span class="skill-chip">GitLab</span>
+                            <span class="skill-chip">Flask</span>
+                            <span class="skill-chip">Cloud Platforms</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="section__inner">
+                <h2 class="section__title">Projects</h2>
+                <div class="carousel">
+                    <div class="carousel__window">
+                        <div class="carousel__track" id="proj-track">
+
+                            <div class="project">
+                                <div class="project__image">
+                                    <img src="images/projects/proj_1.jpg" alt="Project One" loading="lazy">
+                                </div>
+                                <div class="project__content">
+                                    <h3 class="project__name">GNOME Project — Dark Matter Data Analysis</h3>
+                                    <p class="project__desc">Analyzing time-series from a global network of optical magnetometers to search for correlated transient
+events potentially indicative of dark-matter interactions as part of an international research collaboration.</p>
+                                    <div class="project__tech">
+                                        <span class="tech-chip">Python</span>
+                                        <span class="tech-chip">Numpy</span>
+                                        <span class="tech-chip">Pandas</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project">
+                                <div class="project__image">
+                                    <img src="images/projects/proj_2.jpg" alt="Project Two" loading="lazy">
+                                </div>
+                                <div class="project__content">
+                                    <h3 class="project__name">Continual Learning for Satellite Data Analysis</h3>
+                                    <p class="project__desc"><strong>Bachelor Thesis & Ongoing MSc Project</strong><br>
+                                    Proposed and evaluated continual learning strategies to mitigate catastrophic forgetting in satellite telemetry
+                                    streams under shifting data distributions (non-stationary environments).<br>
+                                    Project continued as part of MSc studies; results have been presented as posters at international conferences
+                                    (ML in PL 2025, GHOST Day 2025) and a paper is in preparation.</p>
+                                    <div class="project__tech">
+                                        <span class="tech-chip">Python</span>
+                                        <span class="tech-chip">Continual Learning</span>
+                                        <span class="tech-chip">Novelty Detection</span>
+                                        <span class="tech-chip">Earth Observation</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project">
+                                <div class="project__image">
+                                    <img src="images/projects/proj_3.jpg" alt="Project Three" loading="lazy">
+                                </div>
+                                <div class="project__content">
+                                    <h3 class="project__name">Aortic Arch Calcification Detection</h3>
+                                    <p class="project__desc">Developed deep CNN models for automatic aortic arch calcification classification in X-ray images, including
+                                                                explainable AI analysis using LIME. Scientific paper in preparation.</p>
+                                    <div class="project__tech">
+                                        <span class="tech-chip">Python</span>
+                                        <span class="tech-chip">Deep Learning</span>
+                                        <span class="tech-chip">Computer Vision</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="project">
+                                <div class="project__image">
+                                    <img src="images/projects/proj_4.jpg" alt="Project Four" loading="lazy">
+                                </div>
+                                <div class="project__content">
+                                    <h3 class="project__name">Classification of Histopathological Images</h3>
+                                    <p class="project__desc">Multiclass classification of histopathological images of lung and colon tissues.</p>
+                                    <div class="project__tech">
+                                        <span class="tech-chip">Python</span>
+                                        <span class="tech-chip">PyTorch</span>
+                                        <span class="tech-chip">NumPy</span>
+                                        <span class="tech-chip">Matplotlib</span>
+                                    </div>
+                                    <div class="project__links">
+                                        <a href="https://github.com/jwiekiera/histopathological-classification" class="project-btn project-btn--github">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project project--soon">
+                                <div class="project__content project__content--soon">
+                                    <p class="project__soon-icon">🚀</p>
+                                    <h3 class="project__name">More coming soon</h3>
+                                    <p class="project__desc">New projects are on the way. Stay tuned!</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="carousel__nav">
+                        <button class="carousel__btn" id="proj-prev" aria-label="Previous">&#8592;</button>
+                        <div class="carousel__dots" id="proj-dots"></div>
+                        <button class="carousel__btn" id="proj-next" aria-label="Next">&#8594;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="achievements">
+            <div class="section__inner">
+                <h2 class="section__title">Achievements</h2>
+                <div class="achievements__list">
+
+                    <div class="achievement">
+                        <div class="achievement__image">
+                            <img src="images/achievements/ach_1.jpg" alt="HackYeah 2024" loading="lazy">
+                        </div>
+                        <div class="achievement__body">
+                            <div class="achievement__meta">
+                                <span class="achievement__category">Hackathon</span>
+                                <span class="achievement__year">2025</span>
+                            </div>
+                            <h3 class="achievement__title">HackYeah – the largest on-site hackathon in Europe</h3>
+                            <p class="achievement__place">First Place – Biohacking Category</p>
+                            <p class="achievement__desc">Developed a health-focused desktop app addressing posture and eye strain using computer vision.</p>
+                            <ul class="achievement__list">
+                                <li>Implemented posture detection and eye strain reminders using OpenCV.</li>
+                                <li>Designed a camera-based heart rate measurement feature.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement__image">
+                            <img src="images/achievements/ach_2.jpg" alt="Achievement 2" loading="lazy">
+                        </div>
+                        <div class="achievement__body">
+                            <div class="achievement__meta">
+                                <span class="achievement__category">Hackathon</span>
+                                <span class="achievement__year">2024</span>
+                            </div>
+                            <h3 class="achievement__title">HackYeah – the largest on-site hackathon in Europe</h3>
+                            <p class="achievement__place">First Place – QuantumAI by IBM Category</p>
+                            <p class="achievement__desc">Developed an AI-based approach for quantum computing problems using Qiskit.</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement__image">
+                            <img src="images/achievements/ach_3.jpg" alt="Achievement 3" loading="lazy">
+                        </div>
+                        <div class="achievement__body">
+                            <div class="achievement__meta">
+                                <span class="achievement__category">Scholarship</span>
+                                <span class="achievement__year">2024-2025</span>
+                            </div>
+                            <h3 class="achievement__title">New Technologies for Girls | Intel & Perspektywy</h3>
+                            <p class="achievement__place">Mentoring &amp Scholarship</p>
+                            <p class="achievement__desc">National scholarship and mentoring initiative supporting women in technology and data science.</p>
+                        </div>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement__image">
+                            <img src="images/achievements/ach_4.jpg" alt="Achievement 4" loading="lazy">
+                        </div>
+                        <div class="achievement__body">
+                            <div class="achievement__meta">
+                                <span class="achievement__category">Scholarship</span>
+                                <span class="achievement__year">2024-2025</span>
+                            </div>
+                            <h3 class="achievement__title">Rockwell Automation Scholarship</h3>
+                            <p class="achievement__place">Mentoring &amp Scholarship</p>
+                            <p class="achievement__desc">Awarded a scholarship to support the development and research of the engineering thesis.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="achievement">
+                        <div class="achievement__image">
+                            <img src="images/achievements/ach_5.jpg" alt="Achievement 5" loading="lazy">
+                        </div>
+                        <div class="achievement__body">
+                            <div class="achievement__meta">
+                                <span class="achievement__category">Hackathon</span>
+                                <span class="achievement__year">2023</span>
+                            </div>
+                            <h3 class="achievement__title">Hackathon BIT Festival</h3>
+                            <p class="achievement__place">First Place</p>
+                            <p class="achievement__desc">
+                            Awarded first place for designing and implementing solutions involving Python-based data analysis, NoSQL
+                                databases, and algorithmic problem-solving. <br> Since then, mentoring new participants each year, providing guidance on data analysis, algorithm design,
+                                and project development strategies.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="section__inner">
+                <h2 class="section__title">Contact</h2>
+                <p class="contact__tagline">Feel free to reach out!</p>
+                <div class="contact__links">
+
+                    <a class="contact__link" href="https://www.linkedin.com/in/joanna-wiekiera/" target="_blank" rel="noopener">
+                        <svg class="contact__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span class="contact__label">LinkedIn</span>
+                    </a>
+
+                    <a class="contact__link" href="https://github.com/jwiekiera" target="_blank" rel="noopener">
+                        <svg class="contact__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                        </svg>
+                        <span class="contact__label">GitHub</span>
+                    </a>
+
+                    <a class="contact__link" href="mailto:asiawiek@gmail.com">
+                        <svg class="contact__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span class="contact__label">Email</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <aside class="page-scrollbar" id="page-scrollbar" aria-hidden="true">
+        <div class="page-scrollbar__track" id="scrollbar-track">
+            <div class="page-scrollbar__thumb" id="scrollbar-thumb"></div>
+        </div>
+    </aside>
+
+    <canvas id="planet-canvas"></canvas>
+
+    <script>
+        const toggle = document.getElementById('navbar-toggle');
+        const nav    = document.getElementById('navbar-nav');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('open');
+            toggle.classList.toggle('open');
+        });
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            nav.classList.remove('open');
+            toggle.classList.remove('open');
+        }));
+    </script>
+
+    <script src="js/aurora.js"></script>
+    <script src="js/planet.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/scrollnav.js"></script>
+</body>
+</html>
