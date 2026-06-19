@@ -17,13 +17,18 @@
     window.addEventListener('resize', resize);
 
     // ── State ──────────────────────────────────────────
-    let state = 'idle';
+    let state = 'idle';   // 'idle' | 'launching' | 'flying'
     let celebrateTimer = 0;
     let hintAlpha = 1;
     let t = 0;
 
     const rocket = { x: 0, y: 0, vx: 0, vy: 0, angle: 0, thrusting: false };
     const particles = [];
+
+    // Launch animation
+    let launchTimer = 0;
+    const LAUNCH_DUR = 90;
+    const launchSmoke = [];
 
     // ── Collectibles ───────────────────────────────────
     const collectibles = [];
@@ -34,19 +39,12 @@
     let allStarsFound = false;
     let easterEggTimer = 0;
     let easterEggText = { y: 0, alpha: 0 };
-    const MAX_COLLECT = 5;
-
-    function spawnCollectible() {
-        const docH = document.documentElement.scrollHeight;
-        const pageX = 80 + Math.random() * (W - 160);
-        const pageY = 80 + Math.random() * (docH - 200);
-        collectibles.push({ pageX, pageY, phase: Math.random() * Math.PI * 2, size: 4 + Math.random() * 3 });
-    }
+    const MAX_COLLECT = 14;
 
     function spawnAllCollectibles() {
         collectibles.length = 0;
         const docH = document.documentElement.scrollHeight;
-        const N = 5;
+        const N = MAX_COLLECT;
         for (let i = 0; i < N; i++) {
             const base = 80 + ((i + 0.5) / N) * (docH - 200);
             const pageY = Math.max(80, Math.min(docH - 80, base + (Math.random() - 0.5) * (docH / N * 0.5)));
@@ -58,7 +56,6 @@
     function triggerEasterEgg() {
         easterEggTimer = 280;
         easterEggText = { y: H / 2, alpha: 1 };
-        // Burst fireworks across the screen
         for (let b = 0; b < 8; b++) {
             const bx = 80 + Math.random() * (W - 160);
             const by = 80 + Math.random() * (H - 160);
@@ -87,6 +84,19 @@
                 life: 1,
             });
         }
+    }
+
+    function spawnLaunchSmoke(x, y) {
+        const dir = (Math.random() - 0.5) * 2.8;
+        launchSmoke.push({
+            x: x + dir * 5,
+            y,
+            vx: dir * (0.6 + Math.random() * 1.3),
+            vy: 0.4 + Math.random() * 0.8,
+            life: 1,
+            size: 5 + Math.random() * 5,
+            maxSize: 14 + Math.random() * 20,
+        });
     }
 
     // Rocket rests on top of the planet surface
@@ -131,16 +141,18 @@
     }, { passive: false });
 
     function launch(p) {
-        state = 'flying';
+        state = 'launching';
         window._rocketFlying = true;
         hintAlpha = 1;
         score = 0;
         rocket.x     = p.x;
         rocket.y     = p.y;
         rocket.vx    = 0;
-        rocket.vy    = -2.5;
+        rocket.vy    = 0;
         rocket.angle = 0;
         rocket.thrusting = false;
+        launchTimer = 0;
+        launchSmoke.length = 0;
         document.body.style.cursor = '';
         sparkles.length = 0;
         fireworks.length = 0;
@@ -197,23 +209,44 @@
         ctx.restore();
     }
 
-    function drawRocket(x, y, angle, thrusting) {
+    // flameScale > 1 means launch flame (bigger, multi-layer)
+    function drawRocket(x, y, angle, thrusting, flameScale) {
+        flameScale = flameScale || 1;
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(angle);
 
-        if (thrusting) {
-            const fl = 0.65 + Math.random() * 0.35;
+        const launching = flameScale > 1;
+
+        if (thrusting || launching) {
+            const fl  = 0.65 + Math.random() * 0.35;
+            const ext = launching ? flameScale * (1 + Math.random() * 0.35) : 1;
+
+            // outer orange flame
             ctx.fillStyle = `rgba(255, 108, 18, ${fl})`;
             ctx.beginPath();
-            ctx.moveTo(-3.5, 8); ctx.lineTo(3.5, 8);
-            ctx.lineTo(0, 18 + Math.random() * 10);
+            ctx.moveTo(-3.5 * Math.min(ext, 2.8), 8);
+            ctx.lineTo( 3.5 * Math.min(ext, 2.8), 8);
+            ctx.lineTo(0, 18 + Math.random() * 10 * ext);
             ctx.closePath(); ctx.fill();
-            ctx.fillStyle = `rgba(255, 218, 48, ${fl * 0.72})`;
+
+            // inner yellow flame
+            ctx.fillStyle = `rgba(255, 218, 48, ${fl * 0.75})`;
             ctx.beginPath();
-            ctx.moveTo(-1.5, 8); ctx.lineTo(1.5, 8);
-            ctx.lineTo(0, 13 + Math.random() * 4);
+            ctx.moveTo(-1.8 * Math.min(ext, 2), 8);
+            ctx.lineTo( 1.8 * Math.min(ext, 2), 8);
+            ctx.lineTo(0, 13 + Math.random() * 5 * ext);
             ctx.closePath(); ctx.fill();
+
+            // white-hot core during big flames
+            if (ext > 2) {
+                ctx.fillStyle = `rgba(255, 255, 220, ${fl * 0.88})`;
+                ctx.beginPath();
+                ctx.moveTo(-1, 8); ctx.lineTo(1, 8);
+                ctx.lineTo(0, 12 + Math.random() * 3);
+                ctx.closePath(); ctx.fill();
+            }
+
         } else if (state === 'idle' && Math.random() < 0.04) {
             ctx.fillStyle = 'rgba(255, 195, 90, 0.28)';
             ctx.beginPath();
@@ -235,6 +268,29 @@
         ctx.beginPath(); ctx.arc(0, -1.5, 2.8, 0, Math.PI * 2); ctx.fill();
 
         ctx.restore();
+    }
+
+    function drawLaunchSmoke() {
+        // Engine pre-glow (warm-up before ignition)
+        if (launchTimer > 8 && launchTimer < 32) {
+            const g  = Math.min(1, (launchTimer - 8) / 20);
+            const gx = rocket.x;
+            const gy = rocket.y + 10;
+            const grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, 22 * g);
+            grad.addColorStop(0, `rgba(255, 180, 40, ${g * 0.55})`);
+            grad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath(); ctx.arc(gx, gy, 22 * g, 0, Math.PI * 2); ctx.fill();
+        }
+
+        // Smoke / steam clouds
+        for (const s of launchSmoke) {
+            const r = s.size + (s.maxSize - s.size) * (1 - s.life);
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(205, 215, 235, ${s.life * 0.36})`;
+            ctx.fill();
+        }
     }
 
     function drawCollectibles() {
@@ -290,6 +346,44 @@
     function update() {
         t += 0.016;
 
+        // Launch sequence
+        if (state === 'launching') {
+            launchTimer++;
+            const prog    = launchTimer / LAUNCH_DUR;
+            const baseY   = PY - R - 15;
+
+            // Phase 1 (0-25%): shake builds up
+            // Phase 2 (25-50%): ignition, smoke starts, shake peaks
+            // Phase 3 (50-100%): liftoff, rocket rises, shake stops
+            const shakeMag = launchTimer < LAUNCH_DUR * 0.5
+                ? Math.min(4.5, launchTimer * 0.14)
+                : 0;
+            const shake = (Math.random() - 0.5) * shakeMag;
+
+            let riseAmount = 0;
+            if (prog > 0.48) {
+                const rp = (prog - 0.48) / 0.52;
+                riseAmount = rp * rp * 175;
+            }
+
+            rocket.x = PX + shake;
+            rocket.y = baseY - riseAmount;
+
+            // Spawn smoke after ignition starts
+            if (launchTimer > 20) {
+                const nozzleY = rocket.y + 8;
+                if (launchTimer % 2 === 0)             spawnLaunchSmoke(rocket.x, nozzleY);
+                if (launchTimer > 32)                   spawnLaunchSmoke(rocket.x, nozzleY);
+                if (launchTimer > 45 && Math.random() < 0.5) spawnLaunchSmoke(rocket.x, nozzleY);
+            }
+
+            if (launchTimer >= LAUNCH_DUR) {
+                state = 'flying';
+                rocket.vx = 0;
+                rocket.vy = -2.8;
+            }
+        }
+
         if (state === 'flying') {
             hintAlpha = Math.max(0, hintAlpha - 0.006);
 
@@ -320,11 +414,9 @@
             rocket.x += rocket.vx;
             rocket.y += rocket.vy;
 
-            // Horizontal still wraps
             if (rocket.x < -25) rocket.x = W + 25;
             if (rocket.x > W + 25) rocket.x = -25;
 
-            // Vertical: push page instead of teleporting, clamp to viewport
             const EDGE = 90;
             if (rocket.y < EDGE) {
                 window.scrollBy(0, -Math.ceil((EDGE - rocket.y) / EDGE * 8));
@@ -335,7 +427,6 @@
             if (rocket.y < navH + 10) { rocket.y = navH + 10; if (rocket.vy < 0) rocket.vy = 0; }
             if (rocket.y > H - 15) { rocket.y = H - 15; if (rocket.vy > 0) rocket.vy = 0; }
 
-            // Land when touching planet surface
             if (dist < R + 12) {
                 state = 'idle';
                 window._rocketFlying = false;
@@ -346,7 +437,6 @@
                 celebrateTimer = 55;
             }
 
-            // Collectible collision (convert page coords to viewport)
             const scrollY = window.scrollY;
             for (let i = collectibles.length - 1; i >= 0; i--) {
                 const c = collectibles[i];
@@ -362,7 +452,6 @@
                 }
             }
 
-            // Update collectible phases
             for (const c of collectibles) c.phase += 0.045;
         }
 
@@ -391,6 +480,14 @@
             if (f.life <= 0) fireworks.splice(i, 1);
         }
 
+        for (let i = launchSmoke.length - 1; i >= 0; i--) {
+            const s = launchSmoke[i];
+            s.x  += s.vx; s.y  += s.vy;
+            s.vx *= 0.97; s.vy *= 0.96;
+            s.life -= 0.015;
+            if (s.life <= 0) launchSmoke.splice(i, 1);
+        }
+
         if (easterEggTimer > 0) {
             easterEggTimer--;
             easterEggText.y -= 0.28;
@@ -405,6 +502,9 @@
         ctx.clearRect(0, 0, W, H);
 
         drawPlanet();
+
+        // Launch smoke renders behind rocket
+        if (state === 'launching' || launchSmoke.length > 0) drawLaunchSmoke();
 
         if (state === 'flying') {
             drawCollectibles();
@@ -463,9 +563,18 @@
             }
 
         } else {
-            drawRocket(rocket.x, rocket.y, rocket.angle, rocket.thrusting);
+            // Compute launch flame scale: grows during ignition phase (25-50% of LAUNCH_DUR)
+            let flameScale = 1;
+            if (state === 'launching') {
+                const prog = launchTimer / LAUNCH_DUR;
+                if (prog > 0.22) {
+                    flameScale = 1 + Math.min(3.8, ((prog - 0.22) / 0.22) * 3.8);
+                }
+            }
 
-            if (hintAlpha > 0.04) {
+            drawRocket(rocket.x, rocket.y, rocket.angle, rocket.thrusting, flameScale);
+
+            if (state === 'flying' && hintAlpha > 0.04) {
                 ctx.fillStyle = `rgba(200, 218, 255, ${hintAlpha * 0.38})`;
                 ctx.font = '10px system-ui, sans-serif';
                 ctx.textAlign = 'center';
