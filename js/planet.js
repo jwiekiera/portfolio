@@ -140,6 +140,42 @@
         }
     }, { passive: false });
 
+    function updateControls() {
+        const el = document.getElementById('rocket-controls');
+        if (!el) return;
+        if (state === 'flying') {
+            el.classList.add('visible');
+            el.setAttribute('aria-hidden', 'false');
+        } else {
+            el.classList.remove('visible');
+            el.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function setupMobileControls() {
+        const bindings = [
+            ['btn-left',   'ArrowLeft'],
+            ['btn-thrust', 'ArrowUp'],
+            ['btn-right',  'ArrowRight'],
+        ];
+        for (const [id, key] of bindings) {
+            const btn = document.getElementById(id);
+            if (!btn) continue;
+            btn.addEventListener('pointerdown', e => {
+                e.preventDefault();
+                keys[key] = true;
+                btn.classList.add('pressed');
+            });
+            const release = () => {
+                keys[key] = false;
+                btn.classList.remove('pressed');
+            };
+            btn.addEventListener('pointerup',     release);
+            btn.addEventListener('pointercancel', release);
+            btn.addEventListener('pointerleave',  release);
+        }
+    }
+
     function launch(p) {
         state = 'launching';
         window._rocketFlying = true;
@@ -381,6 +417,7 @@
                 state = 'flying';
                 rocket.vx = 0;
                 rocket.vy = -2.8;
+                updateControls();
             }
         }
 
@@ -430,6 +467,7 @@
             if (dist < R + 12) {
                 state = 'idle';
                 window._rocketFlying = false;
+                updateControls();
                 particles.length = 0;
                 collectibles.length = 0;
                 sparkles.length = 0;
@@ -602,4 +640,5 @@
 
     function loop() { update(); draw(); requestAnimationFrame(loop); }
     loop();
+    setupMobileControls();
 })();

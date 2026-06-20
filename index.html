@@ -88,8 +88,6 @@
                                 <span class="tech-chip">PyTorch</span>
                                 <span class="tech-chip">Hyperspectral Data</span>
                                 <span class="tech-chip">Super-Resolution</span>
-                                <span class="tech-chip">Anomaly Detection</span>
-                                <span class="tech-chip">Continual Learning</span>
                             </div>
                         </div>
                     </div>
@@ -508,6 +506,12 @@ events potentially indicative of dark-matter interactions as part of an internat
     </aside>
 
     <canvas id="planet-canvas"></canvas>
+
+    <div class="rocket-controls" id="rocket-controls" aria-hidden="true">
+        <button class="rocket-btn" id="btn-left"   aria-label="Rotate left">&#8592;</button>
+        <button class="rocket-btn rocket-btn--thrust" id="btn-thrust" aria-label="Thrust">&#8593;</button>
+        <button class="rocket-btn" id="btn-right"  aria-label="Rotate right">&#8594;</button>
+    </div>
 
     <script>
         const toggle = document.getElementById('navbar-toggle');

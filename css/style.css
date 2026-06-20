@@ -1148,3 +1148,56 @@ html, body {
         pointer-events: none;
     }
 }
+
+/* ---- Rocket mobile controls ---- */
+.rocket-controls {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 300;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.rocket-controls.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.rocket-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(8, 8, 40, 0.70);
+    border: 1.5px solid rgba(100, 255, 218, 0.30);
+    color: rgba(100, 255, 218, 0.90);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.1s, border-color 0.1s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.rocket-btn--thrust {
+    width: 68px;
+    height: 68px;
+    font-size: 1.7rem;
+    border-color: rgba(100, 255, 218, 0.45);
+}
+
+.rocket-btn.pressed {
+    background: rgba(100, 255, 218, 0.18);
+    border-color: rgba(100, 255, 218, 0.70);
+    transform: scale(0.93);
+}
