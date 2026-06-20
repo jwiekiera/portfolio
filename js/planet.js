@@ -39,7 +39,7 @@
     let allStarsFound = false;
     let easterEggTimer = 0;
     let easterEggText = { y: 0, alpha: 0 };
-    const MAX_COLLECT = 14;
+    const MAX_COLLECT = 5;
 
     function spawnAllCollectibles() {
         collectibles.length = 0;
